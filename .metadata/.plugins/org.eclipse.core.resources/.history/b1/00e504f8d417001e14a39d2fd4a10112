@@ -1,0 +1,5 @@
+package com.gestaotarefa.gestao.domain;
+
+public class Pessoa {
+
+}

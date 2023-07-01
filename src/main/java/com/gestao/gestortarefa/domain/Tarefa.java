@@ -3,10 +3,12 @@ package com.gestao.gestortarefa.domain;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,6 +18,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
+@Table(name = "tb_tarefa")
 @Entity
 public class Tarefa implements Serializable {
 
@@ -37,7 +40,8 @@ public class Tarefa implements Serializable {
 	
 	private Boolean finalizada; 
 	
-	private Pessoa pessoaAlocada; 
+	private Pessoa pessoaAlocada;
+
 	
 	
 }
