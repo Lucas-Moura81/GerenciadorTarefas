@@ -7,21 +7,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.gestao.gestortarefa.domain.Pessoa;
-import com.gestao.gestortarefa.domain.dto.ListarTotalHoraPessoaDto;
+
 @Repository
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
 
-	@Query(value =  "select "
-			+ "	p.nome, "
-			+ "	td.titulo, "
-			+ "	sum(tt.duracao) as total_horas "
-			+ " from "
-			+ "	public.tb_pessoa p, "
-			+ "	public.tb_tarefa tt, "
-			+ "	public.tb_departamento td "
-			+ " where "
-			+ "	p.id = tt.id_pessoa "
-			+ " and td.id = p.id_departamento "
-			+ " group by p.nome, td.titulo ", nativeQuery = true )
-	List<ListarTotalHoraPessoaDto> listarTotalHoraPessoas();
+	@Query(value = "SELECT COUNT(*) FROM public.tb_pessoa tp WHERE tp.id_departamento = ?1 ", nativeQuery = true)
+	Integer listarQtdPessoasDepartamento(Long idDepartamento);
+
+	@Query(value = "SELECT * FROM public.tb_pessoa tp WHERE tp.id_departamento = ?1 ", nativeQuery = true)
+	List<Pessoa> listarPessoasDepartamento(Long idDepartamento);
+
 }
